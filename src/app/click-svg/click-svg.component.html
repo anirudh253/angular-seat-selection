@@ -1,27 +1,46 @@
-<p>
-	Please select a maximum of 9 seats. <br>
-	<span style="color: red" *ngIf="seats.maxReached">
+<div class="container">
+  <p>Please select a maximum of 9 seats.</p>
+
+  <span style="color: red" *ngIf="seats.maxReached">
     Maximum number of seats selected.
   </span>
-</p>
 
-<svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg"
-	xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-
-	<g>
-		<ng-container *ngFor="let i of range">
-			<ng-container *ngFor="let j of range">
-				<rect [style.cursor]="(!seats.attr[i][j].selected && seats.maxReached) ? 'not-allowed' : 'pointer'"
-					[attr.fill]="seats.attr[i][j].selected ? 'red': ''" id="{{i}}{{j}}a" [attr.x]="seats.attr[i][j].x"
-					[attr.y]="seats.attr[i][j].y" width="8" height="8" (click)="
-            seats.attr[i][j].selected 
-              ? seats.attr[i][j].selected = !seats.attr[i][j].selected 
-              : !seats.maxReached 
-                ? seats.attr[i][j].selected = !seats.attr[i][j].selected 
-                : null; 
-            counter()" />
-			</ng-container>
-		</ng-container>
-	</g>
-</svg>
+  <svg
+    width="210mm"
+    height="297mm"
+    version="1.1"
+    viewBox="0 0 210 297"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  >
+    <g>
+      <ng-container *ngFor="let i of range">
+        <ng-container *ngFor="let j of range">
+          <rect
+            [style.cursor]="
+              !seats.attr[i][j].selected && seats.maxReached
+                ? 'not-allowed'
+                : 'pointer'
+            "
+            [attr.fill]="seats.attr[i][j].selected ? 'red' : ''"
+            id="{{ i }}{{ j }}a"
+            [attr.x]="seats.attr[i][j].x"
+            [attr.y]="seats.attr[i][j].y"
+            width="8"
+            height="8"
+            (click)="
+              seats.attr[i][j].selected
+                ? (seats.attr[i][j].selected = !seats.attr[i][j].selected)
+                : !seats.maxReached
+                ? (seats.attr[i][j].selected = !seats.attr[i][j].selected)
+                : null;
+              counter()
+            "
+          />
+        </ng-container>
+      </ng-container>
+    </g>
+  </svg>
+</div>
